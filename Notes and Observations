@@ -1,0 +1,114 @@
+Browser v/s Node.js
+
+### Browser
+
+- DOM
+- Window
+- Interective apps
+- No filesystem
+- Fragmentation(depends on browser)
+- ES6 modules
+
+### Node
+
+- No DOM
+- No Window
+- Server Side apps
+- Filesystem
+- Versions(only depends on Node.js version)
+- CommonJS(we have to access the modules by default)
+
+REPL and CLI
+
+- REPL(Read Eval Print Loop) --> running in terminal
+- CLI(Command Line Interface) --> running in vscode
+
+GLOBAL ----> NO WINDOW !!
+
+1. \_\_dirname --> path to current directory
+2. \_\_filename --> file name
+3. require --> function to use modules(CommonJS)
+4. module --> info about current module(file)
+5. process --> info about env where the program is being executed
+6. setInterval and setTimeout
+
+### Modules
+
+--> Every file in .js is a module.
+
+--> In module object there is an object called exports that is empty so it's up to us how do we set it up.
+
+--> We can write code and functions in separate file and export those by using "module.exports" and import it anywhere that we want to use by "require(`relative_path`)".
+
+--> While using "module.exports" we mostly use ES6 syntax where key value pairs are the same.
+
+--> Export as you go:- module.exports.items = ['item1', 'item2']
+
+--> If we require a module in our app and if there are some functions that are called in that module so those function will also be executed in our app.
+
+### Built-in Modules
+
+==> os -> require("os")
+-> info about current user -> os.userInfo()
+-> system uptime in seconds -> os.uptime()
+-> type of operating system -> os.type()
+-> it represents os release -> os.release()
+-> totel RAM -> os.totalmem()
+-> how much is RAM is free -> os.freemem()
+
+==> path -> require("path")
+-> specific separator -> path.sep
+-> it joins the paths -> path.join('/content', 'subfoldar', 'textfile.txt')
+-> it gives the path base or the endpoint -> path.basename(filePath)
+-> to resolve a sequence of path-segments to an absolute path -> path.resolve(__dirname,'content',subfoldar,'textfile.txt')
+
+==> fs
+## sync -> blocking -> require('fs')
+-> to read file -> readFileSync("./content/first.txt","utf8")
+-> to overwrite file -> writeFileSync("./content/first.txt", `Edited the first file`);
+-> to update file -> writeFileSync("./content/first.txt", `Edited the first file`, {flag: 'a'});
+
+## async -> non-blocking -> require('fs')
+=> We add a callback function in this approach
+-> to read file -> readFile('./content/first.txt','utf8',(err,result)=>{
+                        if(err){
+                            console.log(err);
+                            reuturn;
+                        }
+                        return;
+                    })
+-> to write in file -> writeFile("./content/result-async.txt", `edited this file with async fs`,{flag: 'a'},
+                        (err, res) => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            console.log(res);
+                        });                
+
+==> http -> require('http')
+-> to create a server -> createServer((req,res)=>{
+                            res.write(`Welcome to homepage`);
+                            res.end()
+                            })
+-> to define the server PORT -> server.listen(3000)
+-----> We can also write `html` in the res.write and res.end
+-> to write a response -> res.write(`This is the response`)
+-> to send the response -> res.end()
+-> to get request url -> req.url
+
+### npm(Node Package Manager) modules -> https://www.npmjs.com/
+-> to check npm version -> npm --v
+-> local dependency(to use it only in this project) -> npm install <packagename>
+-> global dependency(to use it in any project) -> npm install -g <packagename>
+-> dev dependency(to)
+-> package.json -> manifest file(stores important info about project/package)
+    -> manual approach(create package.json) in root and write all properties
+    -> npm init(step by step creating)
+    -> npm init -y(everything is default)
+
+## lodash
+-> to flat arrays -> flattenDeep(arr);
+
+### Pushing Code to GitHub
+-> create a .gitignore file in root directory and write /node_modules to avoid node modules to be uploaded on GitHub
